@@ -9,8 +9,8 @@ class MainApp extends StatefulWidget {
   State<MainApp> createState() => _MainAppState();
 }
 class _MainAppState extends State<MainApp> {
-  String inputValue = "Nocht nichts";
-  List<String> sentMessages= [];
+// Speichert den Wert des TextFieles 
+final TextEditingController conroller= TextEditingController();
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -22,20 +22,19 @@ class _MainAppState extends State<MainApp> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const Text("Hier soll das aus der Box rein"),
+                 Text(conroller.text),
                 const SizedBox(height: standardPadding),
                 TextField(
+                  controller: conroller,
                   decoration: const InputDecoration(
                     border: OutlineInputBorder(),
                   ),
-                  onChanged: (String newValue) {
-                    print("Der neue Wert ist: $newValue");
-                    setState(
-                      () {
-                        inputValue = newValue;
-                      },
-                    );
+                ),
+                  OutlinedButton(onPressed: () {
+                    print(conroller.text);
+                    setState(() {});
                   },
+                  child: const Text("Text setzen"),  
                 ),
               ],
             ),
